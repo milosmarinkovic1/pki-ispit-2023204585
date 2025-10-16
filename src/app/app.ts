@@ -8,5 +8,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('ispit za predmet pki-2023204585');
+  protected readonly title = signal('ispit za predmet pki!!');
 }
