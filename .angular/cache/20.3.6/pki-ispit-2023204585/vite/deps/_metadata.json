@@ -1,0 +1,34 @@
+{
+  "hash": "e659f178",
+  "configHash": "414b4580",
+  "lockfileHash": "f8e4b42f",
+  "browserHash": "a8dbc5db",
+  "optimized": {
+    "@angular/core": {
+      "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
+      "file": "@angular_core.js",
+      "fileHash": "d08afd2d",
+      "needsInterop": false
+    },
+    "@angular/platform-browser": {
+      "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
+      "file": "@angular_platform-browser.js",
+      "fileHash": "6f3036b5",
+      "needsInterop": false
+    },
+    "@angular/router": {
+      "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
+      "file": "@angular_router.js",
+      "fileHash": "346f3e70",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-EA5NY5CD": {
+      "file": "chunk-EA5NY5CD.js"
+    },
+    "chunk-CRTDMQ4D": {
+      "file": "chunk-CRTDMQ4D.js"
+    }
+  }
+}
