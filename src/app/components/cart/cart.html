@@ -1,0 +1,89 @@
+<div class="cart-container">
+  <h2><i class="fas fa-shopping-cart"></i> Moja Korpa</h2>
+  
+  <div *ngIf="!isLoggedIn" class="login-required">
+    <p><i class="fas fa-exclamation-triangle"></i> Morate biti prijavljeni da biste videli sadržaj korpe.</p>
+    <a routerLink="/login" class="login-link">
+      <i class="fas fa-sign-in-alt"></i> Prijavite se ovde
+    </a>
+  </div>
+  
+  <div *ngIf="isLoggedIn">
+    <div *ngIf="cartItems.length === 0" class="empty-cart">
+      <p><i class="fas fa-cart-arrow-down"></i> Vaša korpa je prazna.</p>
+      <a routerLink="/toys" class="browse-toys-link">
+        <i class="fas fa-gamepad"></i> Pogledajte igračke
+      </a>
+    </div>
+    
+    <div *ngIf="cartItems.length > 0" class="cart-items">
+      <div class="cart-header">
+        <h3><i class="fas fa-boxes"></i> Rezervisane Igračke ({{ cartItems.length }} komada)</h3>
+        <p class="total-price">
+          <i class="fas fa-receipt"></i> Ukupna cena: {{ formatPrice(totalPrice) }}
+        </p>
+      </div>
+      
+      <div *ngFor="let toy of cartItems" class="cart-item">
+        <img [src]="'https://toy.pequla.com' + toy.imageUrl" [alt]="toy.name" class="toy-image">
+        
+        <div class="item-details">
+          <h4 class="toy-name">{{ toy.name }}</h4>
+          <p class="toy-description">{{ toy.description }}</p>
+          
+          <div class="toy-info">
+            <p><strong>Tip:</strong> {{ getTypeName(toy.type) }}</p>
+            <p><strong>Cena:</strong> {{ formatPrice(toy.price) }}</p>
+            
+            <!-- UKLONJENE KONTROLE KOLIČINE - nema quantity u Toy interfejsu -->
+            
+            <div class="status-container">
+              <span class="status-label">Status:</span>
+              <span [class]="'status ' + toy.status">
+                {{ toy.status }}
+              </span>
+            </div>
+          </div>
+          
+          <div class="toy-ratings" *ngIf="toy.reviews && toy.reviews.length > 0">
+            <p class="rating-stars">
+              <i class="fas fa-star"></i> {{ getAverageRating(toy).toFixed(1) }}/5
+            </p>
+            <p class="rating-text">
+              <i class="fas fa-comment"></i> ({{ toy.reviews.length }} recenzija)
+            </p>
+          </div>
+          
+          <div class="item-actions">
+            <div class="status-actions" *ngIf="canModifyToy(toy)">
+              <label>Promeni status:</label>
+              <select (change)="updateToyStatus(toy, $any($event.target).value)">
+                <option value="rezervisano" [selected]="toy.status === 'rezervisano'">Rezervisano</option>
+                <option value="pristiglo" [selected]="toy.status === 'pristiglo'">Pristiglo</option>
+                <option value="otkazano" [selected]="toy.status === 'otkazano'">Otkazano</option>
+              </select>
+            </div>
+            
+            <div class="rating-actions" *ngIf="canRateToy(toy)">
+              <label>Ocenite igračku (1-5):</label>
+              <div class="rating-simple">
+                <select (change)="rateToy(toy, $any($event.target).value)" class="rating-select">
+                  <option value="">Izaberite ocenu</option>
+                  <option value="1">1 ★ - Loše</option>
+                  <option value="2">2 ★★ - Zadovoljava</option>
+                  <option value="3">3 ★★★ - Dobro</option>
+                  <option value="4">4 ★★★★ - Vrlo dobro</option>
+                  <option value="5">5 ★★★★★ - Odlično</option>
+                </select>
+              </div>
+            </div>
+            
+            <button (click)="removeFromCart(getToyId(toy))" class="remove-btn">
+              <i class="fas fa-trash"></i> Ukloni iz korpe
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

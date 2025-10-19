@@ -1,12 +1,26 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet, RouterModule } from '@angular/router';
+import { UserService } from './services/user.service';
 
-@Component({  // Korena komponenta
+@Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css'],
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, RouterModule]
 })
 export class App {
-  protected readonly title = signal('ispit za predmet pki!!!!!');
+  title = 'Digitalna Prodavnica Igračaka';
+  
+  constructor(private userService: UserService) {}
+  
+  isLoggedIn(): boolean {
+    return this.userService.isLoggedIn();
+  }
+  
+  logout(): void {
+    this.userService.logout();
+    alert('Uspešno ste se odjavili!');
+  }
 }

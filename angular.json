@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "pki-ispit-2023204585": {
+    "programiranje-korisnickih-interfejsa-2025": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -53,10 +53,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "pki-ispit-2023204585:build:production"
+              "buildTarget": "programiranje-korisnickih-interfejsa-2025:build:production"
             },
             "development": {
-              "buildTarget": "pki-ispit-2023204585:build:development"
+              "buildTarget": "programiranje-korisnickih-interfejsa-2025:build:development"
             }
           },
           "defaultConfiguration": "development"

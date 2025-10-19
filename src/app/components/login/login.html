@@ -1,0 +1,105 @@
+<div class="login-container">
+  <h2><i class="fas fa-user-circle"></i> {{ isLoginMode ? 'Prijavite se' : 'Registrujte se' }}</h2>
+  
+  <div *ngIf="error" class="error-message">
+    <p>{{ error }}</p>
+  </div>
+  
+  <!-- Forma za prijavu -->
+  <div *ngIf="isLoginMode" class="login-form">
+    <div class="form-group">
+      <label for="username"><i class="fas fa-user"></i> Korisničko ime:</label>
+      <input type="text" id="username" 
+             [value]="loginData.username"
+             (input)="loginData.username = ($any($event.target)).value" 
+             placeholder="Unesite korisničko ime">
+    </div>
+    
+    <div class="form-group">
+      <label for="password"><i class="fas fa-lock"></i> Lozinka:</label>
+      <input type="password" id="password" 
+             [value]="loginData.password"
+             (input)="loginData.password = ($any($event.target)).value"
+             placeholder="Unesite lozinku">
+    </div>
+    
+    <button (click)="login()" class="login-btn">
+      <i class="fas fa-sign-in-alt"></i> Prijavi se
+    </button>
+    
+    <p class="switch-mode">
+      Nemate nalog? 
+      <a (click)="switchMode()" class="switch-link">Registrujte se ovde</a>
+    </p>
+  </div>
+  
+  <!-- Forma za registraciju -->
+  <div *ngIf="!isLoginMode" class="register-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="firstName"><i class="fas fa-user"></i> Ime:</label>
+        <input type="text" id="firstName" 
+               [value]="registerData.firstName"
+               (input)="registerData.firstName = ($any($event.target)).value"
+               placeholder="Unesite ime">
+      </div>
+      
+      <div class="form-group">
+        <label for="lastName"><i class="fas fa-user"></i> Prezime:</label>
+        <input type="text" id="lastName" 
+               [value]="registerData.lastName"
+               (input)="registerData.lastName = ($any($event.target)).value"
+               placeholder="Unesite prezime">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+      <input type="email" id="email" 
+             [value]="registerData.email"
+             (input)="registerData.email = ($any($event.target)).value"
+             placeholder="Unesite email adresu">
+    </div>
+    
+    <div class="form-group">
+      <label for="phone"><i class="fas fa-phone"></i> Telefon:</label>
+      <input type="tel" id="phone" 
+             [value]="registerData.phone"
+             (input)="registerData.phone = ($any($event.target)).value"
+             placeholder="Unesite broj telefona">
+    </div>
+    
+    <div class="form-group">
+      <label for="address"><i class="fas fa-home"></i> Adresa:</label>
+      <textarea id="address" 
+                [value]="registerData.address"
+                (input)="registerData.address = ($any($event.target)).value"
+                placeholder="Unesite adresu"></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label for="usernameReg"><i class="fas fa-user"></i> Korisničko ime:</label>
+      <input type="text" id="usernameReg" 
+             [value]="registerData.username"
+             (input)="registerData.username = ($any($event.target)).value"
+             placeholder="Unesite korisničko ime">
+    </div>
+    
+    <div class="form-group">
+      <label for="passwordReg"><i class="fas fa-lock"></i> Lozinka:</label>
+      <input type="password" id="passwordReg" 
+             [value]="registerData.password"
+             (input)="registerData.password = ($any($event.target)).value"
+             placeholder="Unesite lozinku">
+    </div>
+    
+    <button (click)="register()" class="register-btn">
+      <i class="fas fa-user-plus"></i> Registruj se
+    </button>
+    
+    <p class="switch-mode">
+      Već imate nalog? 
+      <a (click)="switchMode()" class="switch-link">Prijavite se ovde</a>
+    </p>
+  </div>
+</div>

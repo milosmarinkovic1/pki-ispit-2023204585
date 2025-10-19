@@ -1,0 +1,125 @@
+<div class="search-container">
+  <h2><i class="fas fa-search"></i> Pretraga Igračaka</h2>
+  
+  <!-- Forma za pretragu -->
+  <div class="search-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">Naziv:</label>
+        <input type="text" id="name" 
+               [value]="filter.name || ''"
+               (input)="filter.name = $any($event.target).value" 
+               placeholder="Unesite naziv igračke">
+      </div>
+      
+      <div class="form-group">
+        <label for="type"><i class="fas fa-shapes"></i> Tip igračke:</label>
+        <select id="type" (change)="filter.type = $any($event.target).value">
+          <option value="">Svi tipovi</option>
+          <option *ngFor="let type of toyTypes" [value]="type" [selected]="filter.type === type">
+            {{ type }}
+          </option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label for="ageGroup"><i class="fas fa-child"></i> Starosna grupa:</label>
+        <select id="ageGroup" (change)="filter.ageGroup = $any($event.target).value">
+          <option value="">Sve starosne grupe</option>
+          <option *ngFor="let group of ageGroups" [value]="group" [selected]="filter.ageGroup === group">
+            {{ group }}
+          </option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="targetGroup"><i class="fas fa-users"></i> Ciljna grupa:</label>
+        <select id="targetGroup" (change)="filter.targetGroup = $any($event.target).value">
+          <option value="">Sve grupe</option>
+          <option value="svi" [selected]="filter.targetGroup === 'svi'">Svi</option>
+          <option value="dečak" [selected]="filter.targetGroup === 'dečak'">Dečak</option>
+          <option value="devojčica" [selected]="filter.targetGroup === 'devojčica'">Devojčica</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+      <button (click)="search()" class="search-btn" [disabled]="isSearching">
+        <i class="fas fa-search"></i> {{ isSearching ? 'Pretraga...' : 'Pretraži' }}
+      </button>
+      <button (click)="resetFilter()" class="reset-btn">
+        <i class="fas fa-undo"></i> Resetuj
+      </button>
+    </div>
+  </div>
+  
+  <!-- Rezultati pretrage -->
+  <div class="search-results" *ngIf="searchResults.length > 0">
+    <h3><i class="fas fa-list"></i> Rezultati pretrage ({{ searchResults.length }})</h3>
+    
+    <div class="results-grid">
+      <div *ngFor="let toy of searchResults" class="toy-card">
+        <div class="toy-image-container">
+          <img [src]="'https://toy.pequla.com' + toy.imageUrl" [alt]="toy.name" class="toy-image">
+          <div class="toy-price">
+            <i class="fas fa-tag"></i> {{ formatPrice(toy.price) }}
+          </div>
+        </div>
+        
+        <div class="toy-content">
+          <h4 class="toy-name">
+            <i class="fas fa-cube"></i> {{ toy.name }}
+          </h4>
+          
+          <div class="toy-details">
+            <p><i class="fas fa-shapes"></i> <strong>Tip:</strong> {{ getTypeName(toy.type) }}</p>
+            <p><i class="fas fa-child"></i> <strong>Uzrast:</strong> {{ getAgeGroupName(toy.ageGroup) }}</p>
+            <p>
+              <i class="fas fa-users"></i> <strong>Namenjeno za:</strong> 
+              <span [class]="'target-group ' + toy.targetGroup" style="margin-left: 0.5rem;">
+                {{ getTargetGroupLabel(toy.targetGroup) }}
+              </span>
+            </p>
+            
+            <!-- OCENA -->
+            <p>
+              <i class="fas fa-star"></i> <strong>Ocena:</strong> 
+              <span *ngIf="getAverageRating(toy) > 0" class="rating-info">
+                <span class="rating-stars">
+                  <span *ngFor="let star of [1,2,3,4,5]" 
+                        [class.filled]="star <= getAverageRating(toy)"
+                        class="star">
+                    ★
+                  </span>
+                </span>
+                <span class="rating-value">{{ getAverageRating(toy).toFixed(1) }}/5</span>
+                <span class="rating-count">({{ toy.reviews?.length || 0 }})</span>
+              </span>
+              <span *ngIf="getAverageRating(toy) === 0" class="no-rating">
+                Nema ocena
+              </span>
+            </p>
+          </div>
+          
+          <div class="toy-actions">
+            <button (click)="reserveToy(toy)" class="reserve-btn">
+              <i class="fas fa-cart-plus"></i> Rezerviši
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Poruka ako nema rezultata -->
+  <div *ngIf="searchResults.length === 0 && !isSearching" class="no-results">
+    <p><i class="fas fa-search-minus"></i> Nema pronađenih igračaka prema zadatim kriterijumima.</p>
+  </div>
+  
+  <!-- Loading indicator -->
+  <div *ngIf="isSearching" class="loading">
+    <p><i class="fas fa-spinner fa-spin"></i> Pretraga u toku...</p>
+  </div>
+</div>

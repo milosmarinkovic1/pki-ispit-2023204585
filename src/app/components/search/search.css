@@ -1,0 +1,256 @@
+.search-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.search-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.search-form {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.price-range .price-inputs {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.price-range input {
+  flex: 1;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.search-btn, .reset-btn {
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.search-btn {
+  background: #4a6fa5;
+  color: white;
+}
+
+.reset-btn {
+  background: #666;
+  color: white;
+}
+
+.search-btn:hover {
+  background: #3a5a80;
+}
+
+.reset-btn:hover {
+  background: #555;
+}
+
+.search-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+/* Rezultati */
+.search-results h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  color: #666;
+  border: 1px solid #ddd;
+}
+
+.loading {
+  text-align: center;
+  padding: 1rem;
+  color: #666;
+}
+
+/* Stilovi za kartice (bez opisa) */
+.toy-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.toy-image-container {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.toy-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.toy-price {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #4a6fa5;
+  color: white;
+  padding: 0.5rem 0.8rem;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.toy-content {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.toy-name {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+  color: #333;
+  text-align: center;
+}
+
+.toy-details {
+  margin-bottom: 1rem;
+}
+
+.toy-details p {
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.target-group {
+  padding: 0.3rem 0.6rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.target-group.svi {
+  background: #e6f2ff;
+  color: #0066cc;
+  border: 1px solid #b3d9ff;
+}
+
+.target-group.dečak {
+  background: #e6ffe6;
+  color: #008000;
+  border: 1px solid #b3ffb3;
+}
+
+.target-group.devojčica {
+  background: #ffe6f2;
+  color: #cc0066;
+  border: 1px solid #ffb3d9;
+}
+
+.toy-ratings {
+  margin-bottom: 1rem;
+  text-align: center;
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.rating-stars {
+  color: #ffcc00;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+}
+
+.rating-text {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.toy-actions {
+  text-align: center;
+  margin-top: auto;
+}
+
+.reserve-btn {
+  background: #4a6fa5;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 80%;
+  max-width: 200px;
+}
+
+.reserve-btn:hover {
+  background: #3a5a80;
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+}

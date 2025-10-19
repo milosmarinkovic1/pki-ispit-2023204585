@@ -1,0 +1,106 @@
+<div class="profile-container">
+  <h2>Moj Profil</h2>
+  
+  <div *ngIf="!user" class="loading">
+    <p>Učitavanje...</p>
+  </div>
+  
+  <div *ngIf="user" class="profile-content">
+    <div *ngIf="successMessage" class="success-message">
+      <p>{{ successMessage }}</p>
+    </div>
+    
+    <div *ngIf="!isEditing" class="profile-view">
+      <div class="profile-info">
+        <div class="info-group">
+          <h3>Lični podaci</h3>
+          <p><strong>Ime i prezime:</strong> {{ user.firstName }} {{ user.lastName }}</p>
+          <p><strong>Email:</strong> {{ user.email }}</p>
+          <p><strong>Telefon:</strong> {{ user.phone || 'Nije uneto' }}</p>
+          <p><strong>Adresa:</strong> {{ user.address || 'Nije uneto' }}</p>
+        </div>
+        
+        <div class="info-group">
+          <h3>Omiljena vrsta igračaka</h3>
+          <div *ngIf="user.favoriteToyTypes && user.favoriteToyTypes.length > 0" class="favorite-types">
+            <span class="type-tag">
+              {{ user.favoriteToyTypes[0] }}
+            </span>
+          </div>
+          <p *ngIf="!user.favoriteToyTypes || user.favoriteToyTypes.length === 0">
+            Nema omiljene vrste igračaka.
+          </p>
+        </div>
+        
+        <div class="info-group">
+          <h3>Nalog</h3>
+          <p><strong>Korisničko ime:</strong> {{ user.username }}</p>
+        </div>
+      </div>
+      
+      <button (click)="startEditing()" class="edit-btn">Izmeni profil</button>
+    </div>
+    
+    <div *ngIf="isEditing && editedUser" class="profile-edit">
+      <div class="edit-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="editFirstName">Ime:</label>
+            <input type="text" id="editFirstName" 
+                   [value]="editedUser.firstName"
+                   (input)="editedUser.firstName = ($any($event.target)).value" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="editLastName">Prezime:</label>
+            <input type="text" id="editLastName" 
+                   [value]="editedUser.lastName"
+                   (input)="editedUser.lastName = ($any($event.target)).value" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="editEmail">Email:</label>
+          <input type="email" id="editEmail" 
+                 [value]="editedUser.email"
+                 (input)="editedUser.email = ($any($event.target)).value" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="editPhone">Telefon:</label>
+          <input type="tel" id="editPhone" 
+                 [value]="editedUser.phone"
+                 (input)="editedUser.phone = ($any($event.target)).value">
+        </div>
+        
+        <div class="form-group">
+          <label for="editAddress">Adresa:</label>
+          <textarea id="editAddress" 
+                    [value]="editedUser.address"
+                    (input)="editedUser.address = ($any($event.target)).value"></textarea>
+        </div>
+        
+        <!-- JEDAN DROPDOWN SA JEDNOM OPCIJOM -->
+        <div class="form-group">
+          <label for="favoriteType"><strong>Omiljena vrsta igračaka:</strong></label>
+          <select id="favoriteType" 
+                  (change)="onFavoriteTypeChange($any($event.target).value)"
+                  class="type-select">
+            <option value="">-- Izaberite vrstu --</option>
+            <option value="Slagalica" [selected]="getFavoriteType() === 'Slagalica'">Slagalica</option>
+            <option value="Figura" [selected]="getFavoriteType() === 'Figura'">Figura</option>
+            <option value="Slikovnica" [selected]="getFavoriteType() === 'Slikovnica'">Slikovnica</option>
+            <option value="Lego" [selected]="getFavoriteType() === 'Lego'">Lego</option>
+            <option value="Plišana" [selected]="getFavoriteType() === 'Plišana'">Plišana</option>
+            <option value="Vozilo" [selected]="getFavoriteType() === 'Vozilo'">Vozilo</option>
+          </select>
+        </div>
+        
+        <div class="form-actions">
+          <button (click)="saveProfile()" class="edit-btn">Sačuvaj</button>
+          <button (click)="cancelEditing()" class="edit-btn cancel">Otkaži</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

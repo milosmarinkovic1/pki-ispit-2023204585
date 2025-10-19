@@ -1,0 +1,48 @@
+<div class="toy-detail-container">
+  <div *ngIf="isLoading" class="loading">
+    <p><i class="fas fa-spinner fa-spin"></i> Učitavanje...</p>
+  </div>
+  
+  <div *ngIf="error" class="error">
+    <p><i class="fas fa-exclamation-triangle"></i> {{ error }}</p>
+  </div>
+  
+  <div *ngIf="toy && !isLoading" class="toy-detail">
+    <div class="toy-header">
+      <h2>{{ toy.name }}</h2>
+      <button (click)="reserveToy()" class="reserve-btn">
+        <i class="fas fa-cart-plus"></i> Rezerviši
+      </button>
+    </div>
+    
+    <div class="toy-content">
+      <div class="toy-image-section">
+        <img [src]="'https://toy.pequla.com' + toy.imageUrl" [alt]="toy.name" class="toy-image">
+        <div class="toy-price">{{ formatPrice(toy.price) }}</div>
+      </div>
+      
+      <div class="toy-info">
+        <p class="toy-description">{{ toy.description }}</p>
+        
+        <div class="toy-details">
+          <p><strong>Tip:</strong> {{ getTypeName(toy.type) }}</p>
+          <p><strong>Starosna grupa:</strong> {{ getAgeGroupName(toy.ageGroup) }}</p>
+          <p><strong>Ciljna grupa:</strong> {{ getTargetGroupLabel(toy.targetGroup) }}</p>
+          <p><strong>Datum proizvodnje:</strong> {{ toy.productionDate }}</p>
+        </div>
+        
+        <div *ngIf="toy.reviews && toy.reviews.length > 0" class="toy-reviews">
+          <h3>Recenzije ({{ toy.reviews.length }})</h3>
+          <div class="average-rating">
+            <span class="rating-stars">Prosečna ocena: {{ getAverageRating().toFixed(1) }}/5</span>
+          </div>
+          <div *ngFor="let review of toy.reviews" class="review">
+            <p><strong>{{ review.userName }}</strong> - {{ review.rating }}/5</p>
+            <p>{{ review.comment }}</p>
+            <small>{{ review.date }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
