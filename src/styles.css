@@ -63,7 +63,7 @@ input, select, textarea {
   font-family: inherit;
 }
 
-/* Scrollbar stilovi za webkit pretraživače */
+
 ::-webkit-scrollbar {
   width: 8px;
 }

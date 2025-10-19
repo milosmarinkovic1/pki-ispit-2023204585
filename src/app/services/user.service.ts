@@ -15,7 +15,7 @@ export class UserService {
       lastName: 'Marković',
       email: 'marko@example.com',
       phone: '011123456',
-      address: 'Beograd, Srbija',
+      address: 'Smederevo, Srbija',
       favoriteToyTypes: ['slagalica'],
       username: 'aa',
       password: 'aa',
