@@ -47,7 +47,7 @@ export class ToyService {
           return finalToy;
         });
         
-        this.toysSubject.next([...this.toys]);
+        this.toysSubject.next([...this.toys]);  // Emituje nove podatke
         return this.toys;
       }),
       catchError(error => {
@@ -61,31 +61,31 @@ export class ToyService {
   console.log('Dodavanje ocene za igračku ID:', toyId);
   
   const newReview: Review = {
-    id: Date.now(), 
+    id: Date.now(), //pravim jedinstveni id
     userName: userName,
     rating: rating,
     comment: comment,
     date: new Date().toISOString()
   };
 
- 
+  // azuriram u glavnoj listi za igrcke 
   const toyIndexInMainList = this.toys.findIndex(t => t.id === toyId);
   if (toyIndexInMainList !== -1) {
     if (!this.toys[toyIndexInMainList].reviews) {
       this.toys[toyIndexInMainList].reviews = [];
     }
     
-    
+    // Provera da li korisnik vec ima ocenu 
     const existingReviewIndex = this.toys[toyIndexInMainList].reviews.findIndex(
       r => r.userName === userName
     );
     
-    if (existingReviewIndex !== -1) {
+    if (existingReviewIndex !== -1) { // azurira ocenu koju sam vec stavio
       
       this.toys[toyIndexInMainList].reviews[existingReviewIndex] = newReview;
     } else {
       
-      this.toys[toyIndexInMainList].reviews.push(newReview);
+      this.toys[toyIndexInMainList].reviews.push(newReview); // dodajem novu ocenu
     }
     
     console.log('Ocena dodata u glavnu listu:', this.toys[toyIndexInMainList].reviews);
@@ -206,6 +206,7 @@ export class ToyService {
             return false;
           }
           
+           // Filter po tipu (ručno parsiranje objekta/stringa)
           if (filter.type) {
             let toyType: string;
             
@@ -258,7 +259,7 @@ export class ToyService {
  reserveToy(toy: Toy): boolean {
   console.log('Pokušaj rezervacije:', toy.name, 'ID:', toy.id);
   
-  
+  // provera dal vec postoji u korpi
   const existingItemIndex = this.cartItems.findIndex(item => item.id === toy.id);
   
   if (existingItemIndex !== -1) {
@@ -296,7 +297,7 @@ export class ToyService {
   }
 
   getCartItems(): Toy[] {
-    return [...this.cartItems];
+    return [...this.cartItems];// Vraća kopiju 
   }
 
   getTotalPrice(): number {
@@ -315,6 +316,7 @@ export class ToyService {
     console.log('Korpa očišćena');
   }
 
+  /*
   debugCart(): void {
     console.log('=== DEBUG KORPA ===');
     console.log('Broj stavki:', this.cartItems.length);
@@ -325,7 +327,7 @@ export class ToyService {
     })));
     console.log('==================');
   }
-
+*/
 
 
 getAverageRating(toy: Toy): number {

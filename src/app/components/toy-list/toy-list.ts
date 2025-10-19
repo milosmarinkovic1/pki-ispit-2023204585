@@ -99,6 +99,4 @@ export class ToyList implements OnInit, OnDestroy {
     }
   }
 
-  // UKLONITE OVU METODU AKO JE NE KORISTITE:
-  // getRatingCount() - nije potrebna
 }

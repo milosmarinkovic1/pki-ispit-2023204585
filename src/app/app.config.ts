@@ -1,12 +1,15 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router'; 
+//Zamenjuje stari RouterModule.forRoot(routes)
 
-import { routes } from './app.routes';
+import { provideHttpClient } from '@angular/common/http';
+//omogućava HTTP zahteve , zamenjuje stari HttpClientModule
+
+import { routes } from './app.routes'; // rute iz app.routes.ts
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes),
+  providers: [  // funkcionalnosti dostupne u CELOJ aplikaciji
+    provideRouter(routes),  
     provideHttpClient()
   ]
 };

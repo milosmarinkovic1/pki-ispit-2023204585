@@ -1,8 +1,7 @@
 
-
 export interface Toy {
-  id?: number;
-  toyId?: number;
+  id?: number;  //lokalni id
+  toyId?: number;  // alternativni id sa apija
   name: string;
   description: string;
   type: string | { id: number; name: string };

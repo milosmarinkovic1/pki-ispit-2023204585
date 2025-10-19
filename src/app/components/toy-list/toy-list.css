@@ -34,7 +34,7 @@
   margin-top: 1rem;
 }
 
-/* Grid sa karticama */
+
 .toys-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -52,7 +52,7 @@
   position: relative;
 }
 
-/* Slika sa cenom */
+
 .toy-image-container {
   position: relative;
   height: 200px;
@@ -65,7 +65,7 @@
   object-fit: cover;
 }
 
-/* CENA */
+
 .toy-price {
   position: absolute;
   top: 10px;
@@ -103,7 +103,7 @@
   color: #555;
 }
 
-/* Ciljna grupa */
+
 .target-group {
   padding: 0.3rem 0.6rem;
   border-radius: 15px;
@@ -130,7 +130,7 @@
   border: 1px solid #ffb3d9;
 }
 
-/* NOVI STILOVI ZA OCENU NA DNu */
+
 .toy-rating-section {
   margin: 1rem 0;
   padding: 0.8rem;
@@ -223,7 +223,7 @@
   }
 }
 
-/* STILOVI ZA OCENU U REDU */
+
 .rating-info {
   display: inline-flex;
   align-items: center;

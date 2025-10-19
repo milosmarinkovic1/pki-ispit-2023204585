@@ -13,7 +13,7 @@ export interface User {
 }
 
 export interface CartItem {
-  toy: Toy;
+  toy: Toy; // iz toy.ts
   quantity: number;
   reservationDate: string;
 }

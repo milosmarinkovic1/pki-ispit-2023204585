@@ -44,10 +44,6 @@
   border-bottom: 1px solid #eee;
 }
 
-.info-group:last-child {
-  border-bottom: none;
-}
-
 .info-group h3 {
   color: #333;
   margin-bottom: 1rem;
@@ -58,15 +54,6 @@
   margin-bottom: 0.5rem;
   color: #666;
 }
-
-.type-tag {
-  background: #4a6fa5;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  display: inline-block;
-}
-
 
 .edit-btn {
   background: #5E5DF0;
@@ -85,7 +72,6 @@
 .edit-btn:hover {
   transform: scale(1.05);
 }
-
 
 .edit-btn.cancel {
   background: #6c757d;
@@ -139,11 +125,9 @@
   border-color: #667eea;
 }
 
-
 .form-actions {
   display: flex;
   gap: 1rem;
   justify-content: center;
   margin-top: 2rem;
 }
-

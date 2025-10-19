@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 
-@Injectable({
+@Injectable({  //ovo je DI ,označava da se ova klasa može koristiti kao servis 
   providedIn: 'root'
 })
 
@@ -47,7 +47,7 @@ export class UserService {
     user.isLoggedIn = true;
     this.currentUser = user;
     
-    // RESETUJ STATUSE PRI SVAKOM LOGIN-U
+    
     this.resetCartStatus();
     
     return true;
@@ -58,9 +58,9 @@ export class UserService {
 
   getCartKey(): string {
     if (this.currentUser) {
-      return `toyShopCart_${this.currentUser.id}`; // Jedinstven ključ po korisniku
+      return `toyShopCart_${this.currentUser.id}`; 
     }
-    return 'toyShopCart_guest'; // Za goste
+    return 'toyShopCart_guest'; 
   }
 
   clearUserCart(): void {
@@ -76,13 +76,13 @@ private resetCartStatus(): void {
   
   if (savedCart) {
     try {
-      const cartItems = JSON.parse(savedCart);
-      const resetCart = cartItems.map((item: any) => ({
-        ...item,
-        status: 'rezervisano'
+      const cartItems = JSON.parse(savedCart);  //parsira string u objekat
+      const resetCart = cartItems.map((item: any) => ({// mapira kroz sve i menja im status
+        ...item,  // kopira sve postojeće property-e 
+        status: 'rezervisano'  // menja status
       }));
       
-      localStorage.setItem('toyShopCart', JSON.stringify(resetCart));
+      localStorage.setItem('toyShopCart', JSON.stringify(resetCart));//sejvuje azuriranu korpu
       console.log('Statusi resetovani pri login-u');
       
     } catch (error) {
@@ -109,8 +109,8 @@ private resetCartStatus(): void {
       return false;
     }
     
-    userData.id = this.users.length + 1;
-    userData.isLoggedIn = true;
+    userData.id = this.users.length + 1; // pravim novi id
+    userData.isLoggedIn = true; // menjam polje
     this.users.push(userData);
     this.currentUser = userData;
     
@@ -121,9 +121,11 @@ private resetCartStatus(): void {
     const index = this.users.findIndex(u => u.id === updatedUser.id);
     
     if (index !== -1) {
-      this.users[index] = updatedUser;
+      this.users[index] = updatedUser; // zamenjujem starog korisnika sa azuriranim
+      
       
       if (this.currentUser && this.currentUser.id === updatedUser.id) {
+        // ako je azurirani korisnik prijavljen , azuriram i current user
         this.currentUser = updatedUser;
       }
       
