@@ -1,13 +1,13 @@
 <div class="login-container">
 
-  
+
   <h2><i class="fas fa-user-circle"></i> {{ isLoginMode ? 'Prijavite se' : 'Registrujte se' }}</h2>
   
   <div *ngIf="error" class="error-message">
     <p>{{ error }}</p>
   </div>
   
-  
+  <!-- Login:  kada je isLoginMode=true -->
   <div *ngIf="isLoginMode" class="login-form">
     <div class="form-group">
       <label for="username"><i class="fas fa-user"></i> Korisničko ime:</label>
@@ -35,6 +35,8 @@
     </p>
   </div>
   
+
+    <!--register: kada je isLoginMode=false -->
   <div *ngIf="!isLoginMode" class="register-form">
     <div class="form-row">
       <div class="form-group">
