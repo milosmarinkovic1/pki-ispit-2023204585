@@ -28,7 +28,7 @@
   border-radius: 25px;
 }
 
-/* Stavke u korpi */
+
 .cart-header {
   display: flex;
   justify-content: space-between;
@@ -87,7 +87,7 @@
   color: #666;
 }
 
-/* STATUS SA TEKSTOM "Namenjeno za:" */
+
 .status-container {
   display: flex;
   align-items: center;
@@ -160,7 +160,7 @@
   font-size: 1.2rem;
 }
 
-/* Dugme - ZAOBLJENO */
+
 .remove-btn {
   background: #ff6b6b;
   color: white;

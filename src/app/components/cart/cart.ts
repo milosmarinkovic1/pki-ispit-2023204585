@@ -25,7 +25,7 @@ export class Cart implements OnInit {
     ngOnInit(): void {
     this.isLoggedIn = this.userService.isLoggedIn();
     
-    // DODAJTE OVU PROVERU
+    
     if (!this.isLoggedIn) {
       this.clearCartData();
     } else {
@@ -60,7 +60,6 @@ export class Cart implements OnInit {
     this.loadCart();
   }
 
-    // DODAJTE OVU METODU ZA PRIKAZ TIPA
   getTypeName(type: any): string {
     if (typeof type === 'string') return type;
     if (type && typeof type === 'object' && type.name) return type.name;
@@ -83,7 +82,7 @@ export class Cart implements OnInit {
         `${currentUser.firstName} ${currentUser.lastName}`
       );
       
-      // Samo osveži korpu bez alerta
+      //osveži korpu 
       setTimeout(() => {
         this.loadCart();
       }, 100);

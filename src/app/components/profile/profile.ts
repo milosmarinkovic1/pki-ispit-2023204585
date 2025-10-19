@@ -59,7 +59,7 @@ export class Profile implements OnInit {
     }
   }
 
-  // SAMO DVE METODE
+  
   onFavoriteTypeChange(type: string): void {
     if (this.editedUser) {
       if (type) {

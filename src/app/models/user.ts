@@ -1,5 +1,4 @@
-import { Toy } from './toy'; // DODAJ OVO
-
+import { Toy } from './toy'; 
 export interface User {
   id: number;
   firstName: string;
@@ -7,7 +6,7 @@ export interface User {
   email: string;
   phone: string;
   address: string;
-  favoriteToyTypes: string[]; // OVO TREBA DA POSTOJI
+  favoriteToyTypes: string[]; 
   username: string;
   password: string;
   isLoggedIn: boolean;

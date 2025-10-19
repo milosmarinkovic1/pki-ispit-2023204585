@@ -117,13 +117,12 @@ getAverageRating(toy: Toy): number {
     return 'Nepoznato';
   }
 
-  // Dodajte ovu metodu u ToyList i Search komponente
+  
 reserveToy(toy: Toy): void {
   const success = this.toyService.reserveToy(toy);
   if (success) {
     console.log('Igračka rezervisana:', toy.name);
-    // Opciono: možete dodati i debug prikaz
-    this.toyService.debugCart();
+   
   }
 }
 }

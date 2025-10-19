@@ -1,5 +1,4 @@
-// UKLONITE OVAJ IMPORT - NIJE POTREBAN U MODELU
-// import { RatingService } from './rating.service';
+
 
 export interface Toy {
   id?: number;

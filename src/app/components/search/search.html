@@ -1,7 +1,7 @@
 <div class="search-container">
   <h2><i class="fas fa-search"></i> Pretraga Igračaka</h2>
   
-  <!-- Forma za pretragu -->
+
   <div class="search-form">
     <div class="form-row">
       <div class="form-group">
@@ -55,7 +55,7 @@
     </div>
   </div>
   
-  <!-- Rezultati pretrage -->
+  
   <div class="search-results" *ngIf="searchResults.length > 0">
     <h3><i class="fas fa-list"></i> Rezultati pretrage ({{ searchResults.length }})</h3>
     
@@ -83,7 +83,7 @@
               </span>
             </p>
             
-            <!-- OCENA -->
+          
             <p>
               <i class="fas fa-star"></i> <strong>Ocena:</strong> 
               <span *ngIf="getAverageRating(toy) > 0" class="rating-info">
@@ -113,12 +113,12 @@
     </div>
   </div>
   
-  <!-- Poruka ako nema rezultata -->
+ 
   <div *ngIf="searchResults.length === 0 && !isSearching" class="no-results">
     <p><i class="fas fa-search-minus"></i> Nema pronađenih igračaka prema zadatim kriterijumima.</p>
   </div>
   
-  <!-- Loading indicator -->
+  
   <div *ngIf="isSearching" class="loading">
     <p><i class="fas fa-spinner fa-spin"></i> Pretraga u toku...</p>
   </div>
